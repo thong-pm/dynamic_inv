@@ -124,6 +124,17 @@ input, select, textarea {
 		text-decoration: none !important
 		
 	}
+	a strong {
+		-moz-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+		-webkit-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+		-ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+		border-bottom: dotted 1px;
+		color: #49bf9d;
+		text-decoration: none !important;
+		font-weight:600;
+		
+	}
 
 		h3:hover {
 			border-bottom-color: transparent;

@@ -39,7 +39,8 @@
             <li> The dashboard is a prototype for presentation purpose.</li>
             </ul> 
         </i>
-        <p><a href="https://github.com/thong-pm/Data_Port/tree/main/Logistics%20Data%20Pipeline" target="_blank" >Link to resources of this project</a></p>
+        <br>
+        <p><a href="https://github.com/thong-pm/Data_Port/tree/main/Logistics%20Data%20Pipeline" target="_blank" >Link to the resources of this project</a></p>
         <br><!-- ___ -->
         <h2 id="heading2"><strong>Pipeline</strong></h2>
         <iframe src="assets/viz/workflow.html" width="1000" height="650" frameborder="0"></iframe>
@@ -52,11 +53,11 @@
         <p> Satisfied the need for ETL from SAP HANA.</p> 
         <p> But then the data needs to be centralized with some other Excel sheets on Sharepoint.</p>
         <p>For this prototype run, I use SQL Server as my local data storing solution, acting as a data warehouse. Then run the script to normalize and bulk upload. <br>
-            <a href="https://github.com/thong-pm/Data_Port/blob/3ff81ccafc1e2a3c574b950cd28c1db15cd70bd8/Logistics%20Data%20Pipeline/script/script_bulk_upload.ipynb" target="_blank" >Link to my script</a>.</p>
+            <a href="https://github.com/thong-pm/Data_Port/blob/3ff81ccafc1e2a3c574b950cd28c1db15cd70bd8/Logistics%20Data%20Pipeline/script/script_bulk_upload.ipynb" target="_blank" >Link to the ETL 1 script</a>.</p>
         <h4><strong>From Data Warehouse to Power BI</strong></h4>
         <p> “Data should be transformed as far upstream as possible and as far downstream as necessary.”
             Shout out to Matthew Roche.</p>
-        <p>I cross join the date_key, materials, and plant as the “skeleton” for the dataset. Result in the  Dim_ Cartesian. Stored in SQL Server and eventually loaded into Power BI.</p>
+        <p>I cross-joined the date_key, materials, and plant as the “skeleton” for the dataset. Result in the  Dim_ Cartesian. Stored in SQL Server and eventually loaded into Power BI.</p>
         <p>It has its pros:</p>
         <p>- Simplified Queries for Power BI Model.</p>
         <p>- Reduced Complexity in DAX.</p>
@@ -91,13 +92,14 @@
         <p>Calculate re-order point for each material for each plant.</p>
         <h2 id="heading5"><strong>Conclusion</strong></h2>
         <figure>
-        <img src="assets/viz/venn_project_eligible.png" alt="Venn diagram of elements for an eligible project" width="500">
+        <img src="assets/viz/venn_project_eligible.png" alt="Venn diagram of elements for an eligible project" width="320">
         <figcaption>Venn Diagram of the Elements for an Eligible Project</figcaption>
         </figure>
         <p>For it to work in a business setting, lots of aspects must be brought to the table.</p>
         <p>Regarding this blog, the main focus will be the technology. While has been working as a demand planner, I know it’s satisfied some of my needs, but there’s a lot of room for improvement for sure.</p>
         <br>
-        <p><a href="https://github.com/thong-pm/Data_Port/tree/main/Logistics%20Data%20Pipeline" target="_blank" >Link to resources of this project</a></p>
-    </div>     
-</body>
+        <p><a href="https://github.com/thong-pm/Data_Port/tree/main/Logistics%20Data%20Pipeline" target="_blank" >Link to the resources of this project</a></p>
+        <p><a href="https://github.com/thong-pm/Data_Port/tree/main/Logistics%20Data%20Pipeline" target="_blank" ><strong>Main Portfolio</strong></a></p>
+    </div>
+</body> 
 </html> 
