@@ -36,7 +36,7 @@
         <i> Disclaimer:<br>
             <ul>
             <li> The data was a censored version of the business data.</li>
-            <li> The dashboard is a prototype for presentation purpose.</li>
+            <li> The dashboard is a prototype for the presentation purpose.</li>
             </ul> 
         </i>
         <br>
@@ -48,14 +48,16 @@
         <br>
         <h3 id="subheading1"><strong>Motivation Behind The Pipeline</strong></h3>
         <h4><strong>From Sources to Data Warehouse </strong></h4>
-        <p> The direct access or API to SAP HANA was restricted for users like me as a Demand Planner. The solution was the delivery of normalized datasets automated by a dedicated BI team using the combination of their tools and Power Automate sending via Outlook mail aligned with the schedules.
-        </p>
-        <p> Satisfied the need for ETL from SAP HANA.</p> 
-        <p> But then the data needs to be centralized with some other Excel sheets on Sharepoint.</p>
-        <p>For this prototype run, I use SQL Server as my local data storing solution, acting as a data warehouse. Then run the script to normalize and bulk upload. <br>
+        <p> The direct access or API to SAP HANA was restricted for users like me as a Demand Planner.</p>
+        <p>The solution was the delivery of normalized datasets automated by a dedicated BI team using the combination of their tools and Power Automate sending via Outlook mail aligned with the schedules.</p>
+        <p> Satisfied the need for ETL from SAP HANA (Task 2).</p> 
+        <p> The data extracted needs to be stored and centralized after normalized together with some other Excel sheets on Sharepoint.</p>
+        <p>For this prototype run, I use SQL Server as my local data storing solution, acting as a data warehouse.</p>    
+        <p>A Python script was run to normalize and bulk upload into SQL Server.</p> <br>
             <a href="https://github.com/thong-pm/Data_Port/blob/3ff81ccafc1e2a3c574b950cd28c1db15cd70bd8/Logistics%20Data%20Pipeline/script/script_bulk_upload.ipynb" target="_blank" >Link to the ETL 1 script</a>.</p>
+        <br>
         <h4><strong>From Data Warehouse to Power BI</strong></h4>
-        <p> “Data should be transformed as far upstream as possible and as far downstream as necessary.”
+        <p><i><a href="https://ssbipolar.com/2021/05/31/roches-maxim/" target="_blank" > “Data should be transformed as far upstream as possible and as far downstream as necessary.”</a></i> 
             Shout out to Matthew Roche.</p>
         <p>I cross-joined the date_key, materials, and plant as the “skeleton” for the dataset. Result in the  Dim_ Cartesian. Stored in SQL Server and eventually loaded into Power BI.</p>
         <p>It has its pros:</p>
