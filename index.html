@@ -64,7 +64,7 @@
         <p><a href="https://github.com/thong-pm/Data_Port/blob/3ff81ccafc1e2a3c574b950cd28c1db15cd70bd8/Logistics%20Data%20Pipeline/script/script_bulk_upload.ipynb" target="_blank" >Link to the ETL 1 script</a>.</p>
         <br>
         <h4><strong>From Data Warehouse to Power BI</strong></h4>
-        <p> Bascally, I need to see at that particular <strong>date</strong>, at that particular <strong>plant</strong>, what is the <strong>quanlity</strong> of that particular <strong>material code</strong> have after do the math: Base Stock + PO quanlities - SO quanlities.
+        <p> Bascally, I need to see at that particular <strong>date</strong>, at that particular <strong>plant</strong>, what is the <strong>quantities</strong> of that particular <strong>material code</strong> have after do the math: Base Stock + PO quantities - SO quantities.
             This means the key is a composition of 3 columns: date, plant, and material code.</p>
         <p> I was standing between creating the composite key column for all the fact tables( date & plant & material_code in Power Query) or "Merge" the quantities info of the fact tables into one big table.</p>
         <p> Power BI loves star schema, everything is built around it. Merging into one big fact table was my choice for this prototype run. Concerns regarding scalability and performance are raised, but considering creating the composite key columns requires calculation in row level, I do not think it will provide any significant advantages if it was chosen.</p>
