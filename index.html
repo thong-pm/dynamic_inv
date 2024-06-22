@@ -59,8 +59,9 @@
         <p> The solution could be no other than collaboration. The normalized datasets automated by a dedicated BI team using the combination of their tools and Power Automate sending via Outlook mail aligned with the schedules.</p>
         <p> And, as mentioned, there was relevant data recorded on Excel workbooks which I do have direct access to transform.</p> 
         <p> Then, those normalized datasets then needs to be stored together somewhere after the transformation. Most common solution is an SQL Data Warehouse.</p>
-        <p> For this prototype run, I use SQL Server as my local data storing solution, this RDBMS is robust enough to act as a data warehouse. And ... it's free.</p>    
-        <p> A Python script was run to normalize and bulk upload into SQL Server.</p> <br>
+        <p> For this prototype run, I use SQL Server as my local data storing solution, this RDBMS is robust enough to act as a data warehouse. And ... it's free.</p>
+        <p> As for the company, they was using Azure at that time.</p>    
+        <p> I scripted a Python file handing normalization and bulk uploading into SQL Server.</p> <br>
         <p><a href="https://github.com/thong-pm/Data_Port/blob/3ff81ccafc1e2a3c574b950cd28c1db15cd70bd8/Logistics%20Data%20Pipeline/script/script_bulk_upload.ipynb" target="_blank" >Link to the ETL 1 script</a>.</p>
         <br>
         <h4><strong>From Data Warehouse to Power BI</strong></h4>
@@ -68,8 +69,8 @@
         <p>The quantities basic math is: Base Stock + PO quantities - SO quantities.
             This means the key is a composition of 3 columns: date, plant, and material code.</p>
         <p> I was standing between creating the composite key column for all the fact tables( date & plant & material_code in Power Query) or "Merge" the quantity info of the fact tables (Base stock, SO, PO) into one big table.</p>
-        <p> Power BI loves star schema, everything is built around it. Merging into one big fact table was my choice for this prototype run. Concerns regarding scalability and performance are raised, but considering creating the composite key columns requires calculation in row level, I do not think it will provide any significant advantages if it was implemented instead.</p>
-        <p> So far so good it’s running on Power BI Service resources. Around 5 million rows for 2 years span (730 days) with 3500 material codes and 2 plants.</p>
+        <p> Power BI loves star schema, everything is built around it. Merging into one big fact table was my choice for this prototype run. Concerns regarding scalability and performance are raised, but considering the composite key columns will require calculation in the row level, I do not think it will provide any significant advantages if it was implemented instead.</p>
+        <p> So far so good it’s working on Power BI Service resources. Around 5 million rows for 2 years span (730 days) with 3500 material codes and 2 plants.</p>
         <p>Making sense for a prototype.</p>
         <br>
         <h5><strong>What does it really means?</strong></h5>
@@ -123,7 +124,8 @@
         <figcaption>Venn Diagram of the Elements for an Eligible Project</figcaption>
         </figure>
         <p>For it to work in a business setting, lots of aspects must be brought to the table.</p>
-        <p>Regarding this blog, the main focus will be the <strong>feasible (technology)</strong>.</p> 
+        <p>Regarding this blog, the main focus will be the <strong>feasible (technology)</strong>. With the combination of knowledge in my previous company's faccilities and data fields, the blog's poitned out the motivation behind the pipeline.</p>
+        <p></p> 
         <p>As I had been working as a Demand Planner, I know it provides great helps, but there’s a lot of room for improvement for sure.</p>
         <hr>
         <ul>
