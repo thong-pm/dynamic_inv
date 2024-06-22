@@ -32,18 +32,18 @@
     <div id="main">
         <h1 id ="title"><strong>Power BI Dynamic Inventory Dashboard</strong></h1>
         <h2 id="heading1"><strong>Introduction</strong></h2>
-        <p> I've had a good time working as a Demand Planner at a company niching Power Technology and Services. Per the standard process, the data was managed hybrid using Excel workbooks (clouded on Sharepoint) and SAP S4/HANA.
-        <p> The problem can be easily seen the information was lacking centralization. Checking and tracking are required to access multiple different data points. Also, this provides no help in transparency between the Supply Chain team and other stakeholders.</p>
-        <p> In short, the process consumed a lot of time and caused ineffectivity in communication.</p> 
-        <p> This blog is the suggested project delivering a <a href="#heading3">Dynamic Inventory Level Dashboard</a> as an attempt to display the relevant information from various data points and provide communication solutions regarding stock level.</p>
-        <p> The main scope is to centralize the information of POs, SOs, availability, schedule shipping from SAP HANA, and multiple Excel sheets into a single dashboard for tracking stock level by the pre-defined timeline.</p>
-        <p> The pipeline suggestion is based on the corporation's facility and doctrine, which to my knowing, is not too unique at all. Although the solutions were never further implemented before I left, I know this dashboard can solve a lot of the problems I was having back then.</p>
+        <p> I've had a good time working as a Demand Planner at a company niching Power Technology and Services. Per the standard process, the data was hybrid recorded and maintained using  Excel workbooks (clouded on Sharepoint) and SAP S4/HANA... and that's it.
+        <p> The problem was obviously the lack of information centralization. Checking and tracking the performance was required to access multiple different data points. Also, this provides zero help in transparency between the Supply Chain team and other stakeholders.</p>
+        <p> In short, my daily operations as well as communication had significant room for improvement.</p>
+        <p> This blog is the suggested project delivering a <a href="#heading3">Dynamic Inventory Level Dashboard</a> as one of the attempts to display the relevant information from various data points.</p>
+        <p> The main scope is to centralize the information of POs, SOs, availability, schedule shipping from SAP HANA plus multiple Excel sheets into a single dashboard for tracking stock level by the pre-defined timeline.</p>
+        <p> The pipeline is based on the corporation's facility and doctrine at that time, which to my knowing, is not too unique at all. Although the solutions were never further implemented before I left, I know the dashboard can definitely solve some problems I was having back then.</p>
         <br>
         <i> Disclaimer:<br>
             <ul>
-                <li> The data is a censored version of the business data.</li>
+                <li> The datasets are the censored version of the actual business data</li>
                 <li> The project was stopped when a prototype was built and was never further implemented.</li>
-                <li> The project was designed aiming to solve my problems as a Demand Planner in commercial and services context.</li>
+                <li> The project was designed aiming to solve my problems as a Demand Planner in commercial and services company context.</li>
             </ul> 
         </i>
         <br>
@@ -56,29 +56,30 @@
         <h3 id="subheading1"><strong>Motivation Behind The Pipeline</strong></h3>
         <h4><strong>From Sources to Data Warehouse </strong></h4>
         <p> The direct access or API to SAP HANA was restricted for users like me as a Demand Planner.</p>
-        <p>The solution was the delivery of normalized datasets automated by a dedicated BI team using the combination of their tools and Power Automate sending via Outlook mail aligned with the schedules.</p>
-        <p> Then...</p> 
-        <p> The data extracted needs to be stored and centralized after normalized together with some other Excel sheets on Sharepoint.</p>
-        <p> For this prototype run, I use SQL Server as my local data storing solution, acting as a data warehouse.</p>    
+        <p> The solution could be no other than collaboration. The normalized datasets automated by a dedicated BI team using the combination of their tools and Power Automate sending via Outlook mail aligned with the schedules.</p>
+        <p> And, as mentioned, there was relevant data recorded on Excel workbooks which I do have direct access to transform.</p> 
+        <p> Then, those normalized datasets then needs to be stored together somewhere after the transformation. Most common solution is an SQL Data Warehouse.</p>
+        <p> For this prototype run, I use SQL Server as my local data storing solution, this RDBMS is robust enough to act as a data warehouse. And ... it's free.</p>    
         <p> A Python script was run to normalize and bulk upload into SQL Server.</p> <br>
         <p><a href="https://github.com/thong-pm/Data_Port/blob/3ff81ccafc1e2a3c574b950cd28c1db15cd70bd8/Logistics%20Data%20Pipeline/script/script_bulk_upload.ipynb" target="_blank" >Link to the ETL 1 script</a>.</p>
         <br>
         <h4><strong>From Data Warehouse to Power BI</strong></h4>
-        <p> Bascally, I need to see at that particular <strong>date</strong>, at that particular <strong>plant</strong>, what is the <strong>quantities</strong> of that particular <strong>material code</strong> have after do the math: Base Stock + PO quantities - SO quantities.
+        <p> Bascally, I need to see at that particular <strong>date</strong>, at that particular <strong>plant</strong>, what is the <strong>quantities</strong> of that particular <strong>material code</strong>.</p> 
+        <p>The quantities basic math is: Base Stock + PO quantities - SO quantities.
             This means the key is a composition of 3 columns: date, plant, and material code.</p>
-        <p> I was standing between creating the composite key column for all the fact tables( date & plant & material_code in Power Query) or "Merge" the quantities info of the fact tables into one big table.</p>
-        <p> Power BI loves star schema, everything is built around it. Merging into one big fact table was my choice for this prototype run. Concerns regarding scalability and performance are raised, but considering creating the composite key columns requires calculation in row level, I do not think it will provide any significant advantages if it was chosen.</p>
-        <p>But so far so good it’s running on Power BI Service resources. Around 5 million rows for 2 years span (730 days) with 3500 material codes and 2 plants.</p>
+        <p> I was standing between creating the composite key column for all the fact tables( date & plant & material_code in Power Query) or "Merge" the quantity info of the fact tables (Base stock, SO, PO) into one big table.</p>
+        <p> Power BI loves star schema, everything is built around it. Merging into one big fact table was my choice for this prototype run. Concerns regarding scalability and performance are raised, but considering creating the composite key columns requires calculation in row level, I do not think it will provide any significant advantages if it was implemented instead.</p>
+        <p> So far so good it’s running on Power BI Service resources. Around 5 million rows for 2 years span (730 days) with 3500 material codes and 2 plants.</p>
         <p>Making sense for a prototype.</p>
         <br>
         <h5><strong>What does it really means?</strong></h5>
         <p><i><a href="https://ssbipolar.com/2021/05/31/roches-maxim/" target="_blank" > “Data should be transformed as far upstream as possible and as far downstream as necessary.”</a></i>
          Shout out to Matthew Roche.</p>
         <i>All possible transformations in data warehouse instead of Power Query:</i>
-        <p>I cross-joined the date_key, materials, and plant as the “skeleton” for the dataset. Result in the new table: Dim_ Cartesian in SQL Server. This is everything I find can be done effectively in the data warehouse then move on downstream, Power BI</p> 
+        <p>I cross-joined the date_key, materials, and plant as the “skeleton” for the dataset. Result in the new table: Dim_ Cartesian in SQL Server. This is everything I find can be done effectively in the data warehouse then move on downstream, Power BI.</p> 
         <i>All possible transformations in Power Query instead of DAX:</i>
-        <p>All relevant tables loaded into Power BI. 
-         I perform merge query using Dim_Cartasian columns as composite keys to join quantities of base stock, POs on an available date, and SOs sold date at plants. This could be handled by Power Query, to help simplify the DAX further down the stream.</p>
+        <p>All relevant tables loaded into Power BI.</p>
+        <p>I perform merge query using Dim_Cartasian columns as composite keys to join quantities of base stock, POs (incomming), and SOs (outgoing). This could be handled by Power Query, to help simplify the DAX further down the stream.</p>
         <i>Measurements in DAX:</i>
         <pre><code>Stock Level = 
             VAR Stock = [Innital Stock] + [In] -[Out]
@@ -109,20 +110,21 @@
         <iframe src="assets/viz/elaborate.html" width="1100" height="800" frameborder="0"></iframe>
         <figcaption>Break Down of the Visualizations in the Dashboard</figcaption>
         <h2 id="heading4"><strong>Improvements and Expansion</strong></h2>
-        <p>There's a lot of room for improvement regarding the automation of the pipeline or the situation awareness and communication capability of the dashboard.</p>
-        <p>Aim to save time by cut down the manual task. Also, ping the problem in the time window that’s can make the impact for the Planner to expedite with suppllier or for the Sales team to re-negotiate the timeline with customers.</p>
+        <p>There's a lot of room for improvement regarding the automation of the pipeline or enhancing the situation awareness capability of this solution.</p>
+        <p>Aim to save time by cut down the manual tasks. Also, raise the backorders risk in the time window that’s can make the impact for the Planner to expedite with suppllier or for the Sales team to re-negotiate the timeline with customers.</p>
         <h3 id="subheading6"><strong>The Pipelines</strong></h3>
         <p>For Task 2 and 4, incorporate orchestra tools to reduce manual tasks.</p>
         <h3 id="subheading7"><strong>The Dashboard</strong></h3>
         <p>Backorders date highlights.</p>
-        <p>Calculate re-order point for each material for each plant.</p>
+        <p>Implement calculation of the re-order point for each material for each plant.</p>
         <h2 id="heading5"><strong>Conclusion</strong></h2>
         <figure>
         <img src="assets/viz/venn_project_eligible.png" alt="Venn diagram of elements for an eligible project" width="320">
         <figcaption>Venn Diagram of the Elements for an Eligible Project</figcaption>
         </figure>
         <p>For it to work in a business setting, lots of aspects must be brought to the table.</p>
-        <p>Regarding this blog, the main focus will be the technology. While has been working as a demand planner, I know it’s satisfied some of my needs, but there’s a lot of room for improvement for sure.</p>
+        <p>Regarding this blog, the main focus will be the <strong>feasible (technology)</strong>.</p> 
+        <p>As I had been working as a Demand Planner, I know it provides great helps, but there’s a lot of room for improvement for sure.</p>
         <hr>
         <ul>
             <li><p><a href="https://github.com/thong-pm/Data_Port/tree/main/Logistics%20Data%20Pipeline" target="_blank" ><strong>Link to the resources of this project</strong></a></p></li>
