@@ -70,7 +70,7 @@
             This means the key is a composition of 3 columns: <strong>date</strong>, <strong>plant</strong>, and <strong>material code</strong>.</p>
         <p> I was standing between creating the composite key column for all the fact tables( date & plant & material_code in Power Query) or "Merge" the quantity info of the fact tables (Base stock, SO, PO) into one big table.</p>
         <p> <a href = "https://learn.microsoft.com/en-us/power-bi/guidance/star-schema">Power BI loves star schema</a>, everything is built around it. Merging into one big fact table was my choice for this prototype run. Concerns regarding scalability and performance are raised, but considering the composite key columns will require calculation in the row level, I do not think it will provide any significant advantages if it was implemented instead.</p>
-        <p> So far so good it’s working on Power BI Service resources. Around 5 million rows for 2 years span (730 days) with 3500 material codes and 2 plants.</p>
+        <p> So far so good it’s working on Power BI Service resources. Around 5 million rows for 2 years span (730 days) with 350 material codes and 2 plants.</p>
         <p>Making sense for a prototype.</p>
         <br>
         <h5><strong>What does it really means?</strong></h5>
