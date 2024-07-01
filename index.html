@@ -77,7 +77,9 @@
         <p><i><a href="https://ssbipolar.com/2021/05/31/roches-maxim/" target="_blank" > “Data should be transformed as far upstream as possible and as far downstream as necessary.”</a></i>
          Shout out to Matthew Roche.</p>
         <i>All possible transformations in data warehouse instead of Power Query:</i>
-        <p>I cross-joined the date_key, materials, and plant as the “skeleton” for the dataset. Resulted in the new table: Dim_ Cartesian in SQL Server. The intention was use this skeleton and left-joined with the transactional data from multiple fact tables. Necessarily creating one big central fact table. But I wouldn't join them in SQL Server, at least not with this prototype pipeline, because it requires orchestra tools to ensure every future changes in the datasets would be updated in the big fact table, I used Power Query down the stream instead.</p>
+        <p>I cross-joined the date_key, materials, and plant as the “skeleton” for the dataset. Resulted in the new table: Dim_ Cartesian in SQL Server. The intention was use this skeleton and left-joined with the transactional data from multiple fact tables.</p> 
+        <p>Necessarily creating one big central fact table.</p> 
+        <p>But I wouldn't join them in SQL Server, at least not with this prototype pipeline, because it requires orchestra tools to ensure every future changes in the small fact tables would be updated in the big fact table, I used Power Query down the stream instead.</p>
         <figure>
             <img src="assets/viz/cross-join-diagram.png" alt="Venn diagram of elements for an eligible project" width="500">
             <figcaption>The Cross-join of Dimension Tables</figcaption>
@@ -85,10 +87,10 @@
         <i>All possible transformations in Power Query instead of DAX:</i>
         <p>All relevant tables loaded into Power BI.</p>
         <p><strong>Merge Query</strong> using Dim_Cartasian columns as composite keys to join quantities of base stock, POs (incomming), and SOs (outgoing).</p>
-        <p>The data model is now <a href="#subheading2">star schema</a>. Not orthodox modeling but at least in the form that's can be utilized by Power BI. Specific the dimension and the one central big fact table.</p>
+        <p>The data model can be considered <a href="#subheading2">star schema</a> now. Not an orthodox modeling but in the form that's can be utilized with Power BI. Specify the dimension tables and the one central big fact table.</p>
         <p>- Dimension tables support filtering and grouping.</p>
-        <p>- The fact table support summarization of the numbers.</p>
-        <p>In this case, filtering can be make in 3 main dimension: <strong>date</strong>, <strong>plant</strong>, and <strong>material code</strong>. As for the sumarization of numbers, the data in the central fact table, <strong>Closing_Inventory</strong> helps the DAX straightforward.</p>
+        <p>- The fact table supports summarization of the numbers.</p>
+        <p>In this case, filtering applies for 3 main dimensions: <strong>date</strong>, <strong>plant</strong>, and <strong>material code</strong>. As for the sumarization of numbers, the central fact table, <strong>Closing_Inventory</strong> helps the DAX straightforward.</p>
         <i>Measurements in DAX:</i>
         <pre><code>Stock Level = 
             VAR Stock = [Innital Stock] + [In] -[Out]
@@ -133,9 +135,8 @@
         <figcaption>Venn Diagram of the Elements for an Eligible Project</figcaption>
         </figure>
         <p>For it to work in a business setting, lots of aspects must be brought to the table.</p>
-        <p>Regarding this blog, the main focus will be the <strong>feasible (technology)</strong>. With the combination of knowledge in my previous company's faccilities and data fields, the blog's poitned out the motivation behind the pipeline.</p>
-        <p></p> 
-        <p>Had been working as a Demand Planner, I know it provides great helps. With that being said, there’s a lot of room for improvement for sure.</p>
+        <p>Regarding this blog, the main focus will be the <strong>feasible (technology)</strong>. The motivation utilizing the knowing of the company's facitiliies and the technical skills to tackle the challenges I'd encoutered as a Demand Planner.</p>
+        <p>With that being said, there’s a lot of room for improvement for sure.</p>
         <hr>
         <ul>
             <li><p><a href="https://github.com/thong-pm/Data_Port/tree/main/Logistics%20Data%20Pipeline" target="_blank" ><strong>Resources of this project</strong></a></p></li>
