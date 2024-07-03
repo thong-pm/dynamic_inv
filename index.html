@@ -84,7 +84,7 @@
         <p>All relevant tables loaded into Power BI.</p>
         <p><strong>Merge Query</strong> using Dim_Cartasian columns as composite keys to join quantities of Current Stock, POs (incomming), and SOs (outgoing). This big fact table is named Closing_Inventory.</p>
         <p>Power Query helps updating every changes in Current Stock, POs, or SOs into the Closing_Inventory table.</p>
-        <p>The data model can be considered <a href="#subheading2">star schema</a> now. Not an orthodox modeling but in the form that's can be utilized with Power BI. Explicit the one central big fact table and surrounding dimension tables.</p>
+        <p>The data model at this point seems <a href="#subheading2">star schema</a> in my opinion. Not an orthodox modeling but in the form that's can be utilized with Power BI. Explicit the one central big fact table and surrounding dimension tables.</p>
         <p>- Dimension tables support filtering and grouping.</p>
         <p>- The fact table supports summarization of the numbers.</p>
         <p>In this case, filtering applies for 3 main dimensions: <strong>date</strong>, <strong>plant</strong>, and <strong>material code</strong>. As for the sumarization of numbers, the central fact table, <strong>Closing_Inventory</strong> helps the DAX straightforward.</p>
