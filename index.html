@@ -31,6 +31,7 @@
     </header>
     <div id="main">
         <h1 id ="title"><strong>Power BI Dynamic Inventory Dashboard</strong></h1>
+        <h1><i>At that particular <strong>date</strong>, at that particular <strong>plant</strong>, what is the <strong>quantity</strong> of that particular <strong>material code(s)</strong></i></h1>
         <h2 id="heading1"><strong>Introduction</strong></h2>
         <h3 id="subheading1"><strong>Context</strong></h3>
         <p> I had a fulfilling time working as a Demand Planner at a company specializing in Power Technology and Services. Per the standard process, the data was hybrid recorded and maintained using Excel workbooks (clouded on Sharepoint) and SAP S4/HANA.</p>
@@ -38,11 +39,12 @@
         <p> Per the traditional way, I used a lot of INDEX MATCH in Excel, trying to gather all the relevant information across multiple data points. It did not go well. At one point, my workbook took 15 minutes just to open.</p>
         <p> In short, there was a lot of room for improvement regarding my data management.</p>
         <h3 id="subheading2"><strong>Scope</strong></h3>
+        <p> Basically, I need to see at that particular date, at that particular plant, what is the quantities of that particular material code.</p>
         <p> To centralize the information of POs, SOs, availability, and schedule shipping from SAP HANA plus multiple Excel sheets into a single dashboard for tracking stock level by the pre-defined timeline.</p>
-        <p> The pipeline is based on the corporation's facilities and resources at that time, which to my knowing, was not too unique.</p>
-        <h3 id="subheading3"><strong>Deliverable</strong></h3>
-        <p> Eventually, a dashboard was come up as a solution. The <a href="#heading3">Dynamic Inventory Level Dashboard</a> was one of the attempts to display the inventory information from various data points.</p>
-        <p>Although the solution were never further implemented before I left, I know the dashboard can solve some problems I was having back then.</p>
+        <p> The pipeline based on the corporation's facilities and resources at that time, which to my knowing, was not too unique.</p>
+        <h3 id="subheading3"><strong>Deliverables</strong></h3>
+        <p> The <a href="#heading3">Dynamic Inventory Level Dashboard</a>.</p>
+        <p> The motivations behind the <a href="#heading2">pipeline</a> design.</p>
         <br>
         <i> Disclaimer:<br>
             <ul>
@@ -61,12 +63,12 @@
         <h4><strong>From Sources to Data Warehouse (Task 1 → Task 3) </strong></h4>
         <p> The direct access or API to SAP HANA for users like me was restricted.</p>
         <p> The solution would be collaboration. The on-demand normalized datasets are processed by a dedicated BI team and mailed via Outlook based on the time aligned.</p>
-        <p> And, as mentioned, there was relevant data recorded on Excel workbooks which I do have direct access.</p> 
-        <p> Then, those normalized datasets then needs to be stored together somewhere after the transformation. The most common solution is an SQL Data Warehouse.</p>
+        <p> Together with the Excel workbooks which I do have direct access. These datasets needs to be stored together somewhere after the transformation.</p> 
+        <p> The most common solution is an SQL Data Warehouse.</p>
         <p> For this prototype run, I use SQL Server as my local data storing solution, this RDBMS is robust enough to act as a data warehouse. And ... it's free.</p>
         <p> Normalization (mostly hadling date format) and bulk upload into SQL Server was handled by a <a href="https://github.com/thong-pm/Data_Port/blob/3ff81ccafc1e2a3c574b950cd28c1db15cd70bd8/Logistics%20Data%20Pipeline/script/script_bulk_upload.ipynb" target="_blank" >Python Script</a>.</p> 
         <h4><strong>From Data Warehouse to Power BI (Task 3 → Task 5)</strong></h4>
-        <p> Bascally, I need to see at that particular <strong>date</strong>, at that particular <strong>plant</strong>, what is the <strong>quantities</strong> of that particular <strong>material code</strong>.</p> 
+        <p> Again, I need to see at that particular <strong>date</strong>, at that particular <strong>plant</strong>, what is the <strong>quantity</strong> of that particular <strong>material code</strong>.</p> 
         <p>The quantities basic math is: Current Stock + PO quantities - SO quantities.
             This means the key is a composition of 3 columns: <strong>date</strong>, <strong>plant</strong>, and <strong>material code</strong>.</p>
         <p> I was standing between creating the composite key column for all the fact tables( date & plant & material_code in Power Query) or "Merge" the quantity info of the fact tables (Current Stock, SO, PO) into one big table.</p>
@@ -137,7 +139,8 @@
         </figure>
         <p>For it to work in a business setting, lots of aspects must be brought to the table.</p>
         <p>Regarding this blog, the main focus will be the <strong>feasible (technology)</strong>. The motivation utilizing the knowing of the company's facitiliies and the technical skills trying to tackle the challenges I'd encoutered as a Demand Planner.</p>
-        <p>With that being said, there’s a lot of room for improvement for sure.</p>
+        <p>Although the solution was never fully implemented before I left, I know it can be very beneficial for my work back then.</p>
+        <p>With that being said, there’s a lot of room for improvement for sure. Especially the scalability and performance optimization.</p>
         <hr>
         <ul>
             <li><p><a href="https://github.com/thong-pm/Data_Port/tree/main/Logistics%20Data%20Pipeline" target="_blank" ><strong>Resources of this project</strong></a></p></li>
